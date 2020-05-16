@@ -2,7 +2,6 @@ package com.lekayie;
 
 public class BST {
     public Node root;
-    public int treeHeight=0;
 
     public BST() {
         this.root = null;
@@ -13,17 +12,48 @@ public class BST {
      * @param showNode
      * @return
      */
-    public String showAllNodeData(Node showNode){
+    public String inorderTraversal (Node showNode){
         if (showNode==null)
             return "";
         StringBuilder sb = new StringBuilder();
-        sb.append(showAllNodeData(showNode.left));
+        sb.append(inorderTraversal(showNode.left));
         sb.append(showNode.data);
         sb.append(" ");
-        sb.append(showAllNodeData(showNode.right));
+        sb.append(inorderTraversal(showNode.right));
         return sb.toString();
     }
 
+    /**
+     * using pre order traversal
+     * @param showNode
+     * @return
+     */
+    public String preOrderTraversal(Node showNode){
+        if (showNode==null)
+            return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append(showNode.data);
+        sb.append(" ");
+        sb.append(preOrderTraversal(showNode.left));
+        sb.append(preOrderTraversal(showNode.right));
+        return sb.toString();
+    }
+
+    /**
+     * Using post order traversal
+     * @param showNode
+     * @return
+     */
+    public String postOrderTraversal(Node showNode){
+        if (showNode==null)
+            return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append(postOrderTraversal(showNode.left));
+        sb.append(postOrderTraversal(showNode.right));
+        sb.append(showNode.data);
+        sb.append(" ");
+        return sb.toString();
+    }
     /**
      * Add new Node to the tree
      * @param number
@@ -54,6 +84,12 @@ public class BST {
             }
         }
     }
+
+    /**
+     * Find a value in the tree
+     * @param number
+     * @return
+     */
     public boolean findValue(int number){
         Node currentNode = root;
         while(currentNode.data!=number){
@@ -68,6 +104,32 @@ public class BST {
         }
         return true;
     }
+
+    /**
+     * Get the tree height
+     * @param node
+     * @return
+     */
+    public int getTreeHeight(Node node){
+        if (node == null) {
+            return -1;
+        }
+
+        int leftHeight = getTreeHeight(node.left);
+        int rightHeight = getTreeHeight(node.right);
+
+        if (leftHeight > rightHeight) {
+            return leftHeight + 1;
+        } else {
+            return rightHeight + 1;
+        }
+    }
+
+    /**
+     * Delete a Node with a given value
+     * @param id
+     * @return
+     */
     public boolean deleteNode(int id){
         Node parentNode = root;
         Node currentNode = root;
@@ -145,6 +207,12 @@ public class BST {
         }
         return true;
     }
+
+    /**
+     * determine the successor
+     * @param deleteNode
+     * @return
+     */
     public Node getSuccessorNode(Node deleteNode){
         //Create a Successor node variable and a node variable holding the successor's parent
         Node successor =null;

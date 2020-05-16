@@ -9,10 +9,19 @@ public class Main {
         tree.addNode(5);
         tree.addNode(4);
         tree.addNode(10);
-        System.out.println(tree.showAllNodeData(tree.root));
+        tree.addNode(2);
+        tree.addNode(6);
+        tree.addNode(15);
+        tree.addNode(9);
+        System.out.println("Inorder: "+tree.inorderTraversal(tree.root));
+        System.out.println("Pre-order: "+tree.preOrderTraversal(tree.root));
+        System.out.println("Post-order: "+tree.postOrderTraversal(tree.root));
+        System.out.println("Tree height: "+tree.getTreeHeight(tree.root));
         System.out.println(tree.findValue(4));
         tree.deleteNode(4);
-        System.out.println(tree.showAllNodeData(tree.root));
+        System.out.println("Inorder: "+tree.inorderTraversal(tree.root));
         System.out.println(tree.findValue(4));
+        System.out.println("Tree height: "+tree.getTreeHeight(tree.root));
+
     }
 }
